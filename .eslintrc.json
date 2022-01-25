@@ -1,0 +1,49 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "root": true,
+  "extends": [
+    "react-app",
+    "eslint:recommended",
+    "plugin:react-redux/recommended",
+    "typescript",
+    "prettier"
+  ],
+  "plugins": [
+    "prettier",
+    "react-redux"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "arrowParens": "avoid",
+        "useTabs": true,
+        "singleQuote": true,
+        "tabWidth": 2,
+        "jsxSingleQuote": true,
+        "trailingComma": "none",
+        "semi": true,
+        "endOfLine": "auto",
+        "bracketSpacing": true,
+        "bracketSameLine": true,
+        "proseWrap": "never"
+      }
+    ],
+    "react/prop-types": 0,
+    "react/display-name": 0,
+    "no-console": "warn",
+    "complexity": "error",
+    "max-len": ["warn", 140, 2],
+    "react-redux/useSelector-prefer-selectors": 0
+  }
+}
