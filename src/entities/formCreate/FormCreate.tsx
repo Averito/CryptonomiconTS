@@ -1,9 +1,17 @@
 import React from 'react';
 import { Search } from 'features/search/Search';
-import { Button } from 'shared/UIKit/buttons/Button';
+import { Button } from 'shared/UIKit/button/Button';
 import { ErrorText } from 'shared/UIKit/errorText/ErrorText';
+import { useInput } from '../../shared/providers/useInput';
+import { Coin } from '../../processes/store/reducers/coinReducer/types';
+import { useTypedSelect } from '../../shared/providers/useTypedSelect';
+import { Loader } from '../../shared/UIKit/loader/Loader';
 
 export const FormCreate = () => {
+	const coins: Coin[] = useTypedSelect(store => store.coins);
+
+	const { input: inputSearch, setInput: setInputSearch } = useInput();
+
 	return (
 		<section>
 			<div className='flex'>
@@ -15,6 +23,8 @@ export const FormCreate = () => {
 					</label>
 					<div className='mt-1 relative rounded-md shadow-md'>
 						<input
+							onChange={setInputSearch}
+							value={inputSearch.toUpperCase()}
 							type='text'
 							name='wallet'
 							id='wallet'
@@ -22,12 +32,13 @@ export const FormCreate = () => {
 									focus:border-blue-500 sm:text-sm rounded-md'
 							placeholder='Например DOGE'
 						/>
-						<Search />
+						<Loader data={Boolean(coins.length)} />
+						<Search inputSearch={inputSearch} coins={coins} />
 					</div>
 				</div>
 			</div>
 			<ErrorText type={''} />
-			<Button type='CREATE'>Добавить</Button>
+			<Button type='ADD'>Добавить</Button>
 		</section>
 	);
 };

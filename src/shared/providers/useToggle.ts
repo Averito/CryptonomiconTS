@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 export const useToggle = (initialBoolean: boolean) => {
 	const [initial, setInitial] = useState<boolean>(initialBoolean);
-	const setInitialMod = () => {
+	const setInitialMod = useCallback(() => {
 		setInitial(prev => !prev);
-	};
-	return [initial, setInitialMod];
+	}, []);
+	return { initial, setInitial: setInitialMod };
 };

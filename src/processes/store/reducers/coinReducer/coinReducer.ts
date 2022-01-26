@@ -1,15 +1,15 @@
-import { actionCoinsEnum, CoinsAction, ICoin } from './types';
+import { ActionsCoinEnum, CoinActions, Coin } from './types';
 
-const initialState: ICoin[] = [];
+const initialState: Coin[] = [];
 
-export const actionSetCoinsCreator = (payload: ICoin[]) => {
-	return { type: actionCoinsEnum.SET_COINS, payload };
+export const actionSetCoinsCreator = (payload: Coin[]) => {
+	return { type: ActionsCoinEnum.SET_COINS, payload };
 };
 
-export const coinReducer = (state = initialState, action: CoinsAction) => {
+export const coinReducer = (state = initialState, action: CoinActions) => {
 	switch (action.type) {
-		case actionCoinsEnum.SET_COINS:
-			return [...state, action.payload];
+		case ActionsCoinEnum.SET_COINS:
+			return [...state, ...action.payload];
 		default:
 			return state;
 	}

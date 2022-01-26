@@ -1,17 +1,17 @@
-export interface ICoin {
+export interface Coin {
 	data_available_from: number;
 	id: number;
 	partner_symbol: string;
 	symbol: string;
 }
 
-export enum actionCoinsEnum {
+export enum ActionsCoinEnum {
 	SET_COINS = 'SET_COINS'
 }
 
-export interface actionSetCoins {
-	type: actionCoinsEnum.SET_COINS;
-	payload: ICoin[];
+export interface ActionSetCoins {
+	type: ActionsCoinEnum.SET_COINS;
+	payload: Coin[];
 }
 
-export type CoinsAction = actionSetCoins;
+export type CoinActions = ActionSetCoins;
