@@ -1,17 +1,17 @@
 import React from 'react';
+
 import { Search } from 'features/search/Search';
 import { Button } from 'shared/UIKit/button/Button';
 import { ErrorText } from 'shared/UIKit/errorText/ErrorText';
-import { useInput } from '../../shared/providers/useInput';
-import { Coin } from '../../processes/store/reducers/coinReducer/types';
+import { useInput } from 'shared/providers/useInput';
+import { Coin } from 'processes/store/reducers/coinReducer/types';
 import { useTypedSelect } from '../../shared/providers/useTypedSelect';
-import { Loader } from '../../shared/UIKit/loader/Loader';
+import { Loader } from 'shared/UIKit/loader/Loader';
 
 export const FormCreate = () => {
 	const coins: Coin[] = useTypedSelect(store => store.coins);
 
 	const { input: inputSearch, setInput: setInputSearch } = useInput();
-
 	return (
 		<section>
 			<div className='flex'>
