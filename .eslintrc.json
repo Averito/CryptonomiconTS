@@ -36,14 +36,19 @@
         "endOfLine": "auto",
         "bracketSpacing": true,
         "bracketSameLine": true,
-        "proseWrap": "never"
+        "proseWrap": "never",
+        "printWidth": 180
       }
     ],
     "react/prop-types": 0,
     "react/display-name": 0,
     "no-console": "warn",
     "complexity": "error",
-    "max-len": ["warn", 140, 2],
+    "max-len": [
+      "warn",
+      180,
+      2
+    ],
     "react-redux/useSelector-prefer-selectors": 0
   }
 }

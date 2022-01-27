@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Coin } from 'processes/store/reducers/coinReducer/types';
 import { Ticker } from '../../processes/store/reducers/tickerReducer/types';
 import { actionSetTickerCreator } from '../../processes/store/reducers/tickerReducer/tickerReducer';
+import { useTypedSelect } from '../../shared/providers/useTypedSelect';
 
 interface SearchProps {
 	inputSearch: string;
@@ -11,6 +12,7 @@ interface SearchProps {
 }
 
 export const Search = ({ inputSearch, coins }: SearchProps) => {
+	const tickers = useTypedSelect(store => store.tickers.tickers);
 	const dispatch = useDispatch();
 	const autoCompleteLength = 4;
 
@@ -24,6 +26,7 @@ export const Search = ({ inputSearch, coins }: SearchProps) => {
 	return (
 		<div className='flex overflow-x-auto'>
 			{(coins as Coin[])
+				.filter((coin: Coin) => tickers.every(ticker => ticker.symbol !== coin.symbol))
 				.filter((coin: Coin) => coin?.symbol?.includes(inputSearch))
 				.slice(0, autoCompleteLength)
 				.map((coin: Coin) => {

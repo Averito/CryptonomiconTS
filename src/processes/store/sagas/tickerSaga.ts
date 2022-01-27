@@ -1,9 +1,6 @@
-import { takeEvery, call, select, put } from 'redux-saga/effects';
+import { call, put, select, takeEvery } from 'redux-saga/effects';
 
-import {
-	ActionsTickerEnum,
-	TickerState
-} from '../reducers/tickerReducer/types';
+import { ActionsTickerEnum, TickerState } from '../reducers/tickerReducer/types';
 import { API, URL } from '../../../shared/api';
 import { actionUpdateTickerCreator } from '../reducers/tickerReducer/tickerReducer';
 

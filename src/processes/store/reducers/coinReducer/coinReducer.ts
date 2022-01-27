@@ -1,4 +1,4 @@
-import { ActionsCoinEnum, CoinActions, Coin } from './types';
+import { ActionsCoinEnum, Coin, CoinActions } from './types';
 
 const initialState: Coin[] = [];
 
