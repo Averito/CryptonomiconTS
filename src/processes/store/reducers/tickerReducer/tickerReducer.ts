@@ -2,6 +2,8 @@ import {
 	ActionDeleteTicker,
 	ActionNextPage,
 	ActionPreviousPage,
+	ActionSetError,
+	ActionSetNoneError,
 	ActionSetTicker,
 	ActionsTickerEnum,
 	ActionUpdateFilter,
@@ -29,13 +31,20 @@ export const actionUpdateTickerCreator = (ticker: Ticker): ActionUpdateTicker =>
 export const actionUpdateFilterCreator = (filter: string): ActionUpdateFilter => {
 	return { type: ActionsTickerEnum.UPDATE_FILTER, payload: filter };
 };
+export const actionSetErrorCreator = (error: string): ActionSetError => {
+	return { type: ActionsTickerEnum.SET_ERROR, payload: error };
+};
+export const actionSetNoneErrorCreator = (): ActionSetNoneError => {
+	return { type: ActionsTickerEnum.SET_NONE_ERROR };
+};
 
 const initialState: TickerState = {
 	tickers: [],
 	currentPage: 1,
 	pageSize: 12,
 	currentForUpdateTicker: '',
-	filter: ''
+	filter: '',
+	error: ''
 };
 
 export const tickerReducer = (state = initialState, action: TickerActions) => {
@@ -51,7 +60,7 @@ export const tickerReducer = (state = initialState, action: TickerActions) => {
 			return {
 				...state,
 				tickers: state.tickers.filter(ticker => ticker.symbol !== action.payload),
-				currentPage: Math.floor((state.tickers.filter(ticker => ticker.symbol.includes(state.filter)).length - 1) / state.pageSize) || 1
+				currentPage: Math.ceil((state.tickers.filter(ticker => ticker.symbol.includes(state.filter)).length - 1) / state.pageSize) || 1
 			};
 		case ActionsTickerEnum.NEXT_PAGE:
 			if (state.tickers.filter(ticker => ticker.symbol.includes(state.filter)).length > state.pageSize * state.currentPage) {
@@ -78,6 +87,16 @@ export const tickerReducer = (state = initialState, action: TickerActions) => {
 			return {
 				...state,
 				filter: action.payload.toUpperCase()
+			};
+		case ActionsTickerEnum.SET_ERROR:
+			return {
+				...state,
+				error: action.payload
+			};
+		case ActionsTickerEnum.SET_NONE_ERROR:
+			return {
+				...state,
+				error: 'NONE'
 			};
 		default:
 			return state;

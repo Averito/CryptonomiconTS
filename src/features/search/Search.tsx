@@ -2,25 +2,22 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Coin } from 'processes/store/reducers/coinReducer/types';
-import { Ticker } from '../../processes/store/reducers/tickerReducer/types';
-import { actionSetTickerCreator } from '../../processes/store/reducers/tickerReducer/tickerReducer';
-import { useTypedSelect } from '../../shared/providers/useTypedSelect';
+import { Ticker } from 'processes/store/reducers/tickerReducer/types';
+import { actionSetTickerCreator } from 'processes/store/reducers/tickerReducer/tickerReducer';
 
 interface SearchProps {
 	inputSearch: string;
 	coins?: Coin[];
+	tickers: Ticker[];
 }
 
-export const Search = ({ inputSearch, coins }: SearchProps) => {
-	const tickers = useTypedSelect(store => store.tickers.tickers);
+export const Search = ({ inputSearch, coins, tickers }: SearchProps) => {
 	const dispatch = useDispatch();
 	const autoCompleteLength = 4;
 
 	const addTicker = (symbol: string) => {
 		const ticker: Ticker = { symbol, USD: 0 };
-		return () => {
-			dispatch(actionSetTickerCreator(ticker));
-		};
+		return () => dispatch(actionSetTickerCreator(ticker));
 	};
 
 	return (

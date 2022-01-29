@@ -29,6 +29,7 @@ export const Button = ({ children, type, onClick }: ButtonProp) => {
 	if (type === 'ADD') {
 		return (
 			<button
+				onClick={onClick}
 				type='button'
 				className='my-4 inline-flex items-center py-2 px-4 border border-transparent shadow-sm text-sm leading-4 font-medium
 				rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300 focus:outline-none
@@ -45,6 +46,7 @@ export const Button = ({ children, type, onClick }: ButtonProp) => {
 	}
 	return (
 		<button
+			onClick={onClick}
 			type='button'
 			className='my-4 inline-flex items-center py-2 px-4 border border-transparent shadow-sm text-sm leading-4 font-medium
 				rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300 focus:outline-none
